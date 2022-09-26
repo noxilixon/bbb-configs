@@ -32,7 +32,6 @@ def find_mesh_data(name, v):
     for section in networks['networks']:
         sec = section.get('name')
         if sec and len(sec.split('_')) >1 and sec.split('_')[1] == s:
-            print(sec)
             return Vlan(name, 
                         ip.ip_network(section.get('prefix')), 
                         list(ipv6_prefix.subnets(new_prefix=64))[section.get('ipv6_subprefix')],
