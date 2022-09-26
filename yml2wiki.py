@@ -68,8 +68,6 @@ for section in networks['networks']:
                                        vsub4[s[n]],
                                        list(ipv6_prefix.subnets(new_prefix=64))[vsub6][s[n]],
                                        find_mesh_data(n, section['vid'])))
-            else:
-                subnets[k].append(Node(n, '', '', find_mesh_data(n, section['vid'])))
         
 def print_table():
     print('{| class="wikitable"')
