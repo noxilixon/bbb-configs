@@ -32,12 +32,13 @@ def find_mesh_data(name, v):
     for section in networks['networks']:
         sec = section.get('name')
         if sec and len(sec.split('_')) >1 and sec.split('_')[1] == s:
+            print(sec)
             return Vlan(name, 
                         ip.ip_network(section.get('prefix')), 
                         list(ipv6_prefix.subnets(new_prefix=64))[section.get('ipv6_subprefix')],
                         section.get('vid'),
                         v)
-    return Vlan('','','','','')
+    return Vlan('','','','',v)
  
 class Node:
     def __init__(self, n, v4, v6, v):
@@ -55,15 +56,21 @@ for section in networks['networks']:
     else:
         k = section['role']
     subnets[k] = []
-    vsub4 = ip.ip_network(section['prefix'])
-    vsub6 = section['ipv6_subprefix']
+    if section.get('prefix'):
+        vsub4 = ip.ip_network(section.get('prefix'))
+    else:
+        vsub4 = None
+    vsub6 = section.get('ipv6_subprefix')
     if section.get('assignments'):
         s = section['assignments']
         for n in s:
-            subnets[k].append(Node(n,
-                                   vsub4[s[n]],
-                                   list(ipv6_prefix.subnets(new_prefix=64))[vsub6][s[n]],
-                                   find_mesh_data(n, section['vid'])))
+            if vsub4 and vsub6:
+                subnets[k].append(Node(n,
+                                       vsub4[s[n]],
+                                       list(ipv6_prefix.subnets(new_prefix=64))[vsub6][s[n]],
+                                       find_mesh_data(n, section['vid'])))
+            else:
+                subnets[k].append(Node(n, '', '', find_mesh_data(n, section['vid'])))
         
 def print_table():
     print('{| class="wikitable"')
