@@ -77,12 +77,12 @@ def print_table():
         if v:
             for i in v:
                 print('|- ')
-                print('| http://'+i.name+'.olsr')
+                print('| https://'+i.name+'.olsr')
                 print('|| '+str(i.vlan.vlan))
                 print('|| '+str(i.vlan.ipv6))
                 print('|| '+str(i.vlan.ipv4))
-                print('|| '+str(i.ipv6))
-                print('|| '+str(i.ipv4))
+                print('|| https://['+str(i.ipv6)+']')
+                print('|| https://'+str(i.ipv4))
                 print('|| '+str(i.vlan.mgmt))
     print('|}')
     
