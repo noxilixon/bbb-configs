@@ -36,3 +36,14 @@ networks:
       oplatz-core: 1
       oplatz-cube1: 2
       oplatz-cube2: 3
+      oplatz-switch: 4
+      oplatz-nf-n: 5
+      oplatz-nf-o: 6
+      oplatz-nf-s: 7
+      oplatz-nf-w: 8
+
+location__channel_assignments_11a_standard__to_merge:
+  oplatz-nf-n: 36-40
+  oplatz-nf-o: 40-40
+  oplatz-nf-s: 44-20
+  oplatz-nf-w: 48-20
