@@ -1,8 +1,19 @@
 ---
+
+# mesh: 10.31.68.72/29 
+# dhcp: 10.31.149.0/25
+# mgmt: 10.31.149.128/27
+
 ipv6_prefix: "2001:bf7:750:4b00::/56"
 
-# Mesh: 10.31.147.232/29
 networks:
+  
+  - vid: 10
+    role: mesh
+    name: mesh_adalbert
+    prefix: 10.31.68.72/32
+    ipv6_subprefix: -1
+    ptp: true
 
   - vid: 42
     role: mgmt
@@ -22,6 +33,7 @@ networks:
       linie206-ap6: 9
       linie206-ap7: 10
       linie206-ap8: 11
+      linie-adalbert: 12
 
   - vid: 40
     role: dhcp
