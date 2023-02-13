@@ -44,7 +44,7 @@ networks:
     assignments:
       linie206-core: 1
 
-  - vid: 23
+  - vid: 50
     role: ext
     name: uplink
     tunnel_wan_ip: 192.168.178.223/24
