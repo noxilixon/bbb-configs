@@ -16,7 +16,13 @@ freifunk-berlin repo https://github.com/freifunk-berlin/falter-wiki-bot.
 #  CONFIG  #
 ############
 
-load_dotenv(".env")
+if not load_dotenv(".env"):
+    raise FileNotFoundError(
+        (
+            "No .env file found. Please make shure you used example.env as a template"
+            "and filled in your personal credentials."
+        )
+    )
 
 API_URL = "https://wiki.freifunk.net/api.php"
 WIKI_URL = "https://wiki.freifunk.net"
